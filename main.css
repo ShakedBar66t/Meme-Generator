@@ -1,0 +1,106 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #3e4b68f3;
+}
+
+
+header {
+    display: flex;
+    flex-direction: row;
+    height: 15vh;
+    border-radius: 50px;
+    width: 100%;
+    padding: 0 2rem;
+    background: linear-gradient(0.25turn, #4f89c0, #37a870);
+    color: wheat;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar{
+    font-size: 1.7rem;
+    gap: 15px;
+    z-index: 2;    
+}
+
+/* .nav-bar li:not(:last-child){
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 1.2rem;
+} */
+
+a{
+    color: unset;
+    text-decoration: unset;
+}
+ul{
+    list-style: none;
+    display: flex;
+}
+
+img{
+    box-sizing: content-box;
+}
+
+.imgs-container{
+    max-width: 90vw;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0 auto 25px;
+}
+
+.img-gallery{
+    border-radius: 5%;
+    width: 300px;
+    height: auto;
+}
+
+.logo{
+    cursor: pointer;
+    height: 3rem;
+}
+
+.grid{
+    display: grid;
+}
+
+.flex{
+    display: flex;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.gallery{
+    flex-direction: column;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+
+canvas{
+    border: 0.45rem solid rgb(49, 44, 44);
+    border-radius: 2rem;
+    background-color: white;
+}
+
+.hidden{
+    display: none;
+}
+
+.editor{
+    flex-direction: column;
+    justify-content: center;
+}
+
+.editor-container{
+    width: 85vw;
+    margin: 0 auto 20px;
+    gap: 3.5rem;
+}
