@@ -83,7 +83,6 @@ img{
     justify-content: center;
 }
 
-
 canvas{
     border: 0.45rem solid rgb(49, 44, 44);
     border-radius: 2rem;
@@ -96,7 +95,10 @@ canvas{
 
 .editor{
     flex-direction: column;
-    justify-content: center;
+    background-color:#555454 ;
+    border-radius: 2rem;
+    padding: 1.5rem 0;
+    gap: 1.5rem;
 }
 
 .editor-container{

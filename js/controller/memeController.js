@@ -89,14 +89,6 @@ function renderText() {
     return gCtx
 }
 
-function createTopText() {
-
-}
-
-function createBottomText() {
-
-}
-
 
 
 function showEditor() {
