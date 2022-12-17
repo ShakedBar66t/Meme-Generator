@@ -87,26 +87,12 @@ function addLine(){
     gMeme.lines.push(createLine())
 }
 
-function saveMeme(){
-    gSavedMemes.push(gElCanvas.toDataURL())
-    saveToStorage(gSavedMemes, )
-    var shkong = document.querySelector('#shkood')
-    shkong.src = gSavedMemes[0]
-    
-    // var numOfSaveImg = loadFromStorage('numOfSaveImg')
-    // if (!numOfSaveImg){
-    //     saveToStorage('numOfSaveImg', 1)
-    //     numOfSaveImg = 1
-    // } else {
-    //     numOfSaveImg++
-    // }
-
-    // renderCanvas()
-    // var elCanvas = getElCanvas()
-    // var imgContent = elCanvas.toDataURL()
-    // saveToStorage(`meme${numOfSaveImg}`, [gMeme, imgContent])
-    // saveToStorage('numOfSaveImg', numOfSaveImg)
-}
+// function saveMeme(){
+//     gSavedMemes.push(gElCanvas.toDataURL())
+//     saveToStorage(gSavedMemes, )
+//     var shkong = document.querySelector('#shkood')
+//     shkong.src = gSavedMemes[0]
+// }
 
 function downloadMeme(elLink){
     const data = gElCanvas.toDataURL()
