@@ -78,6 +78,22 @@ function onChangeSize(size) {
     renderCanvas()
 }
 
+function onMoveLine(amount){
+    console.log(amount);
+    moveLine(amount)
+    renderCanvas()
+}
+
+function onSetTextAlign(align){
+    setTextAlign(align)
+    renderCanvas()    
+}
+
+function onDeleteLine(){
+    deleteLine()
+    renderCanvas()
+}
+
 function onSetLanguage(lang) {
     setLang(lang)
     if (lang === 'he') {
@@ -102,24 +118,7 @@ function onDownloadMeme(elLink) {
     downloadMeme(elLink)
 }
 
-function changeStrokeColor(el) {
-    let color = el.value
-    let lineArray = getTextLines()
-    lineArray.forEach(element => element.strokeStyle = color)
-    renderMeme()
-}
 
-function increaseSize() {
-    let lineArray = getTextLines()
-    lineArray.forEach(element => element.size = element.size + 5)
-    // renderMeme()
-}
-
-function decreaseSize() {
-    let lineArray = getTextLines()
-    lineArray.forEach(element => element.fontSize = element.fontSize - 5)
-    renderMeme()
-}
 
 function openGallery() {
     const elGallery = document.querySelector('.gallery')
@@ -151,135 +150,6 @@ function drawRect(textLine) {
 function toggleMenu() {
     document.body.classList.toggle('menu-open');
 }
-
-function onClickCanvas(ev) {
-    const pos = getEvPos(ev)
-    var meme = getMeme()
-    if (meme.lines.length === 1 && meme.lines[0].text === '') return
-    var lineClick = isLineClick(ev)
-    if (lineClick) {
-        const idxLine = meme.lines.findIndex(line =>
-            line === lineClick
-        )
-        if (lineClick.text === 'TOP TEXT' && lineClick.id === 0) {
-            document.querySelector('.text-line').value = ''
-        } else document.querySelector('.text-line').value = lineClick.text
-        renderCanvas()
-        drawRect(lineClick)
-        meme.selectedLineIdx = idxLine
-    } else {
-        if (isCircleClicked(pos)) renderCanvas
-    }
-}
-
-function addMouseListeners() {
-    gElCanvas.addEventListener('click', onClickCanvas);
-    gElCanvas.addEventListener('mousemove', onMove)
-    gElCanvas.addEventListener('mousedown', onDown)
-    gElCanvas.addEventListener('mouseup', onUp)
-}
-
-function addTouchListeners() {
-    gElCanvas.addEventListener('touchmove', onMove)
-    gElCanvas.addEventListener('touchstart', onDown)
-    gElCanvas.addEventListener('touchend', onUp)
-}
-
-function getEvPos(pos) {
-    var pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
-    if (gTouchEvs.includes(ev.type)) {
-        ev.preventDefault()
-        ev = ev.changedTouches[0]
-        pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
-        }
-    }
-    return pos
-}
-
-function onDown(ev) {
-    var meme = getMeme()
-    const pos = getEvPos(ev)
-    var lineClick = isLineClick(ev)
-    if (isCircleClicked(pos)) {
-        setCircleDrag(true)
-        gStartPos = pos
-        document.body.style.cursor = 'nw-resize'
-    } else {
-        if (!lineClick || meme.selectedLineIdx !== lineClick.id) return
-        setLineDrag(true)
-        document.body.style.cursor = 'grabbing'
-        gStartPos = pos
-    }
-}
-
-function onMove(ev) {
-    const memeLine = getMeme().lines[getMeme().selectedLineIdx]
-    const pos = getEvPos(ev)
-    if (isCircleClicked(pos)) {
-        const circle = getGCircle()
-        var isCircleDrag = getGIsCircleDrag()
-        if (isCircleDrag) {
-            const dx = pos.x - gStartPos.x
-            const dy = pos.y - gStartPos.y
-            gStartPos = pos
-            renderCanvas()
-            drawRect(memeLine)
-        } else {
-            document.body.style.cursor = 'nw-resize'
-        }
-    } else if (memeLine.isDrag) {
-        const dx = pos.x - gStartPos.x
-        const dy = pos.y - gStartPos.y
-        moveLine(memeLine, dx, dy)
-        gStartPos = pos
-        renderCanvas()
-        drawRect(memeLine)
-    } else if (isLineClick(ev)) {
-        document.body.style.cursor = 'grab'
-    }
-}
-
-function moveLine(memeLine, dx, dy) {
-    memeLine.x += dx
-    memeLine.y += dy
-    memeLine.rectSize.pos.x += dx
-    memeLine.rectSize.pos.y += dy
-}
-
-function onUp(ev) {
-    onClickCanvas(ev)
-    setLineDrag(false)
-    const pos = getEvPos(ev)
-    document.body.style.cursor = 'unset'
-}
-
-function isLineClick(ev) {
-    var meme = getMeme()
-    var pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
-    if (gTouchEvs.includes(ev.type)) {
-        ev.preventDefault()
-        ev = ev.changedTouches[0]
-        pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offSetTop - ev.target.clientTop
-        }
-    }
-    return meme.lines.find(line =>
-        pos.x > line.rectSize.pos.x &&
-        pos.x < (line.rectSize.pos.x + line.rectSize.width) &&
-        pos.y > line.rectSize.pos.y &&
-        pos.y < (line.rectSize.pos.y + line.rectSize.height)
-    )
-}
-
 function onAddLine() {
     addLine()
     renderCanvas()

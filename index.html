@@ -16,7 +16,7 @@
         <ul class="nav-bar flex">
             <li> <a data-trans="gallery" href="index.html">Gallery</a></li>
             <li> <a data-trans="memes" href="savedMemes.html">Memes</a></li>
-            <li> <a data-trans="about" href="">About</a></li>
+            <li> <a data-trans="about" href="about.html">About</a></li>
             <li>
                 <select class="language" onchange="onSetLanguage(this.value)">
                     <option class="en" value="en">English</option>
@@ -40,10 +40,16 @@
                     onchange="onSetCurrTextLine(this.value)">
                 <div class="button-line-1">
                     <button class="btn" onclick="onSwitchLine()">
-                        <img class="icon" src="/img/icons/upandown.jpg">
+                        <img class="icon" src="img/icons/upandown.jpg">
                     </button>
                     <button class="btn" onclick="onAddLine()">
                         <img class="icon" src="img/icons/add.jpg">
+                    </button>
+                    <button class="btn" onclick="onMoveLine(-5)">
+                        <img class="icon" src="img/icons/up.jpg">
+                    </button>
+                    <button class="btn" onclick="onMoveLine(5)">
+                        <img class="icon" src="img/icons/down.jpg">
                     </button>
                 </div>
                 <div class="select-font-container">
@@ -56,18 +62,30 @@
                 <div class="button-line-2 flex">
                     <button class="btn" >
                         <input class="color-input" onchange="onSetColor(this.value)" type="color" style="opacity:0; position:absolute;" />
-                        <img class="icon" src="/img/icons/textColor.jpg">
+                        <img class="icon" src="img/icons/textColor.jpg">
                     </button>
                     <button class="btn">
                         <input type="color" value="#ff0000" style="opacity:0; position:absolute;"
                             onchange="onSetStrokeColor(this.value)" />
-                        <img class="icon" src="/img/icons/strokeColor.jpg">
+                        <img class="icon" src="img/icons/strokeColor.jpg">
                     </button>
                     <button class="btn" onclick="onChangeSize(5)">
-                        <img class="icon" src="/img/icons/IncreaseFontSize.jpg">
+                        <img class="icon" src="img/icons/IncreaseFontSize.jpg">
                     </button>
                     <button class="btn" onclick="onChangeSize(-5)">
-                        <img class="icon" src="/img/icons/DecreaseFontSize.jpg">
+                        <img class="icon" src="img/icons/DecreaseFontSize.jpg">
+                    </button>
+                    <button class="btn" onclick="onDeleteLine()">
+                        <img class="icon" src="img/icons/delete.jpg">
+                    </button>
+                    <button class="btn" onclick="onSetTextAlign('right')">
+                        <img src="img/icons/align-to-right.jpg" class="icon">
+                    </button>
+                    <button class="btn" onclick="onSetTextAlign('left')">
+                        <img src="img/icons/align-to-left.jpg" class="icon">
+                    </button>
+                    <button class="btn" onclick="onSetTextAlign('center')">
+                        <img src="img/icons/center-text-alignment.jpg" class="icon">
                     </button>
                 </div>
                 <div class="load-meme flex">

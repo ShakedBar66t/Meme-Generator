@@ -34,6 +34,10 @@ var gTrans = {
     'share': {
         en: 'Share',
         he: 'שיתוף'
+    },
+    'me': {
+        en: 'My Name is Shaked Barsheshet, Im 24 years old from Haifa, Israel.',
+        he: 'השם שלי הוא שקד ברששת אני בן 24 מחיפה, ישראל.'
     }
 
 }

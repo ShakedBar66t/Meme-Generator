@@ -79,8 +79,22 @@ function setFont(font){
     gMeme.lines[gCurrLineIdx].fontFamily = font
 }
 
+function setTextAlign(align) {
+    if (align === 'right')gMeme.lines[gCurrLineIdx].align = 'left'
+    if (align === 'left')gMeme.lines[gCurrLineIdx].align = 'right'
+    if (align === 'center')gMeme.lines[gCurrLineIdx].align = 'center'
+}
+
+function deleteLine(){
+    gMeme.lines.splice(gCurrLineIdx, 1)
+}
+
 function changeSize(size){
     gMeme.lines[gCurrLineIdx].size += size
+}
+
+function moveLine(amount){
+    gMeme.lines[gCurrLineIdx].y += amount
 }
 
 function addLine(){

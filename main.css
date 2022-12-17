@@ -3,9 +3,47 @@
 }
 
 body {
+    margin: 0;
     background-color: #3e4b68f3;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: poppins;
 }
 
+body.rtl {
+    direction: rtl;
+}
+
+.profile{
+    text-align: center;
+    background: linear-gradient(0.25turn, #4f89c0, #37a870);
+    width: 950px;
+    height: 670px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1.3rem;
+}
+
+.about-me{
+    padding: 0 2rem 1rem;
+    font-size: 2rem;
+    position: absolute;
+    bottom: 0;
+}
+
+.profile img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: 40% 50%;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 header {
     display: flex;
@@ -102,8 +140,12 @@ img {
 .gallery {
     width: 90vw;
     margin: 0 auto 25px;
-    flex-wrap: wrap;
     gap: 0.3rem;
+}
+
+main {
+    margin-top: 1rem;
+    min-height: calc(85vh - 45px);
 }
 
 footer {
