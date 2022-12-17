@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img class="logo" src="img/LOGO.png">
+        </a>
+    <ul class="nav-bar">
+        <li> <a data-trans="gallery" href="index.html">Gallery</a></li>
+        <li> <a data-trans="memes" href="savedMemes.html">Memes</a></li>
+        <li> <a data-trans="about" href="">About</a></li>
+        <li>
+            <select class="language" onchange="onSetLanguage(this.value)">
+                <option class="en" value="en">English</option>
+                <option class="he" value="he">עברית</option>
+            </select>
+        </li>
+    </ul>
+</header>
+
+<script src="js/service/i18nService.js"></script>
+<script src="js/service/utilService.js"></script>
+<script src="js/service/storageService.js"></script>
+<script src="js/service/GalleryService.js"></script>
+<script src="js/service/memeService.js"></script>
+<script src="js/controller/memeController.js"></script>
+<script src="js/controller/galleryController.js"></script>    
+</body>
+</html>

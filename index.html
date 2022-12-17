@@ -9,58 +9,90 @@
     <title>Meme Generator</title>
 </head>
 
-<body onload="init()">
+<body onload="onInitGallery()" class="menu-open">
+    <div class="main-screen" onclick="toggleMenu()"></div>
     <header>
-        <img class="logo" src="img/LOGO.png" alt="">
-        <ul class="nav-bar">
-            <li> <a href="">Gallery</a></li>
-            <li> <a href="">Memes</a></li>
-            <li> <a href="">About</a></li>
+        <img class="logo" src="img/LOGO.png" onclick="openGallery()">
+        <ul class="nav-bar flex">
+            <li> <a data-trans="gallery" href="index.html">Gallery</a></li>
+            <li> <a data-trans="memes" href="savedMemes.html">Memes</a></li>
+            <li> <a data-trans="about" href="">About</a></li>
+            <li>
+                <select class="language" onchange="onSetLanguage(this.value)">
+                    <option class="en" value="en">English</option>
+                    <option class="he" value="he">עברית</option>
+                </select>
+            </li>
         </ul>
+        <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
     </header>
     <main>
-        <div class="gallery flex align-center">
+        <div class="gallery-container">
             <div class="search-img grid"></div>
-            <div class="imgs-container  justify-center flex">
-                <img class="img-gallery" src="img/meme-imgs (square)/1.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/2.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/3.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/4.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/5.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/6.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/7.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/8.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/9.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/10.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/11.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/12.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/13.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/14.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/15.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/16.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/17.jpg" alt onclick="drawImg(this)">
-                <img class="img-gallery" src="img/meme-imgs (square)/18.jpg" alt onclick="drawImg(this)">
-            </div>
+            <div class="gallery"></div>
         </div>
         <section class="editor-container flex justify-center hidden">
             <section class="canvas-container">
                 <canvas id="canvas" width="450" height="450"></canvas>
             </section>
             <section class="editor flex align-center">
-                <input class="top-text-line" type="text" placeholder="Enter Meme Text Here" oninput="setTopLineTxt(this)">
-                <input class="bottom-text-line" type="text" placeholder="Enter Meme Text Here" oninput="setBottomLineTxt(this)">
-                <div class="button-line-1"></div>
-                <div class="button-line-2"></div>
+                <input class="text-line" data-trans="lineText" type="text" placeholder="Enter Text Here"
+                    onchange="onSetCurrTextLine(this.value)">
+                <div class="button-line-1">
+                    <button class="btn" onclick="onSwitchLine()">
+                        <img class="icon" src="/img/icons/upandown.jpg">
+                    </button>
+                    <button class="btn" onclick="onAddLine()">
+                        <img class="icon" src="img/icons/add.jpg">
+                    </button>
+                </div>
+                <div class="select-font-container">
+                    <label class="fonter" data-trans="font-input" for="select-font">Font:</label>
+                    <select class="font-selector" id="select-font" onchange="onSetFont(this.value)">
+                        <option value="impact">Impact</option>
+                        <option value="arial">Arial</option>
+                    </select>
+                </div>
+                <div class="button-line-2 flex">
+                    <button class="btn" >
+                        <input class="color-input" onchange="onSetColor(this.value)" type="color" style="opacity:0; position:absolute;" />
+                        <img class="icon" src="/img/icons/textColor.jpg">
+                    </button>
+                    <button class="btn">
+                        <input type="color" value="#ff0000" style="opacity:0; position:absolute;"
+                            onchange="onSetStrokeColor(this.value)" />
+                        <img class="icon" src="/img/icons/strokeColor.jpg">
+                    </button>
+                    <button class="btn" onclick="onChangeSize(5)">
+                        <img class="icon" src="/img/icons/IncreaseFontSize.jpg">
+                    </button>
+                    <button class="btn" onclick="onChangeSize(-5)">
+                        <img class="icon" src="/img/icons/DecreaseFontSize.jpg">
+                    </button>
+                </div>
+                <div class="load-meme flex">
+                    <button class="load save" onclick="onSaveMeme()" data-trans="save">Save</button>
+                    <button class="load download">
+                        <a href="#" onclick="onDownloadMeme(this)" download="my-meme" data-trans="download">Download</a>
+                    </button>
+                    <button class="load share" onclick="onUploadMeme()" data-trans="share">Share</button>
+                </div>
                 <div class="stickers"></div>
                 <div class="load-meme flex"></div>
             </section>
         </section>
     </main>
+    <footer style="bottom: 0px;">By Shaked Barsheshet</footer>
 
 
+    <script src="js/service/i18nService.js"></script>
+    <script src="js/service/utilService.js"></script>
+    <script src="js/service/storageService.js"></script>
+    <script src="js/service/GalleryService.js"></script>
     <script src="js/service/memeService.js"></script>
     <script src="js/controller/memeController.js"></script>
     <script src="js/controller/galleryController.js"></script>
+    <script src="js/service/uploadService.js"></script>
 
 </body>
 
