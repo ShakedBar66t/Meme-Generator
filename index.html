@@ -9,7 +9,7 @@
     <title>Meme Generator</title>
 </head>
 
-<body onload="onInitGallery()" class="menu-open">
+<body onload="onInitGallery()">
     <div class="main-screen" onclick="toggleMenu()"></div>
     <header>
         <img class="logo" src="img/LOGO.png" onclick="openGallery()">
@@ -27,10 +27,7 @@
         <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
     </header>
     <main>
-        <div class="gallery-container">
-            <div class="search-img grid"></div>
             <div class="gallery"></div>
-        </div>
         <section class="editor-container flex justify-center hidden">
             <section class="canvas-container">
                 <canvas id="canvas" width="450" height="450"></canvas>
